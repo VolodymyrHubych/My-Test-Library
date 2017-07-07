@@ -3,7 +3,6 @@
     var arrayProto = Array.prototype,
         stringProto = String.prototype;
     
-
     //get type 
     if(!Object.prototype.getType) {
 	    Object.prototype.getType = function (obj) {
@@ -26,7 +25,7 @@
     //convert all elements to string
     arrayProto.toStringArray = function() {
         return this.map(function(elm) {
-            return JSON.stringify(elm);
+            return elm.toString();
         });
     }
 
@@ -79,13 +78,14 @@
         //else returns concatenation of two arrays
             return this.concat(arr);
         }
+        return this;
     }
 
     //convert array to string
     arrayProto.toString = function() {
-        return this.reduce(function(a, b) {
-            return a.toString() + " " + b.toString();
-        }, '');
+        return this.toStringArray().reduce(function(a, b) {
+            return b.toString() !== '' ? a + " " + b : a;
+        }, '').trim();
     }
 
     //Adding extensions to String
@@ -103,14 +103,14 @@
     }
 
     //get integer numbers from string
-    stringProto.getNumbers = function() {
+    stringProto.getIntegers = function() {
         var numberPattern =  /\d+/g;
         return this.match( numberPattern ).map(function(elem) {
             return parseFloat(elem);
         });
     }
 
-    stringProto.sortWords = function() {
+    stringProto.sortByWords = function() {
         return this.toArray().sortArray().toString().trim();
     }
 
@@ -140,8 +140,8 @@
         },
 
         //get integer
-        getNumbers : function() {
-            return this.instance.toString().getNumbers();
+        getIntegers : function() {
+            return this.instance.toString().getIntegers();
         },
 
 
@@ -181,7 +181,7 @@
         //if type of instance is string sort it by words
         sort : function() {
             if (this.type === "String") {
-                this.instance = this.instance.sortWords();
+                this.instance = this.instance.sortByWords();
             } else {
                 this.instance =  this.instance.sortArray();
             }

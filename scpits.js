@@ -4,7 +4,7 @@ var str = "Some string with phone number 8-01-215-612-0113";
 
 console.log('String = ' + str);
 
-var numb = str.getNumbers();
+var numb = str.getIntegers();
 
 console.log('Numb in string = ' + numb);
 
@@ -50,7 +50,7 @@ console.log(myLib);
 
 console.log('All numbers : ' + myLib.getAllNumbers());
 
-console.log('Integer : '  + myLib.getNumbers());
+console.log('Integer : '  + myLib.getIntegers());
 
 
 console.log('Sort and display...');
@@ -77,7 +77,7 @@ console.log(myLib);
 
 console.log('All numbers : ' + myLib.getAllNumbers());
 
-console.log('Integer : '  + myLib.getNumbers());
+console.log('Integer : '  + myLib.getIntegers());
 
 console.log('Sort and display...');
 
